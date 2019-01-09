@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lungers Chat</title>
+        <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
+            <div class="container">
+                <a class="navbar-brand" href="#">Lungers Chat</a>
+            </div>
+        </nav>
+
+        <main>
+            <div class="container">
+                <div class="log-in">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                    </div>
+                    <button class="btn btn-primary">Continue</button>
+                </div>
+                <div class="chat-area">
+                    <div class="row">
+                        <div class="col-3 border-right border-secondary">
+                            <h3 class="mb-3">Online Users</h3>
+                            <ul class="list-group users">
+                                <!-- <li class="list-group-item">You</li> -->
+                            </ul>
+                        </div>
+                        <div class="col-9">
+                            <div class="messages">
+                                <div class="message bg-light text-black rounded pl-3 py-2">
+                                    Connecting...
+                                </div>
+                            </div>
+                            <hr class="border-top border-secondary">
+                            <div class="send-message mt-3">
+                                <div class="form-group">
+                                    <label for="message-content">Message</label>
+                                    <textarea class="form-control" id="message-content" rows="3"></textarea>
+                                </div>
+                                <button class="btn btn-primary">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <script src="script.js"></script>
+    </body>
+</html>
