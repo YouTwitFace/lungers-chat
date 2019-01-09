@@ -1,0 +1,22 @@
+{
+  "name": "lungers-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "lint": "eslint **/*.js --fix",
+    "build": "electron-builder",
+    "build:win32": "build --win --ia32",
+    "build:win64": "build --win --x64"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^4.0.1",
+    "electron-builder": "^20.38.4"
+  },
+  "dependencies": {
+    "socket.io-client": "^2.2.0"
+  }
+}
