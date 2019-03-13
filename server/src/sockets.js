@@ -16,9 +16,9 @@ function init(server) {
         });
 
         socket.on(`message`, message => {
-            if (users.get(socket.id)) {
+            if (users.get(socket.id) && message.trim() !== ``) {
                 io.emit(`message`, {
-                    message: message,
+                    message: message.trim(),
                     user: users.get(socket.id),
                     date: new Date(),
                 });
