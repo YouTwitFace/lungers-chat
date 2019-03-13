@@ -10,7 +10,8 @@
     "build:win32": "build --win --ia32",
     "build:win64": "build --win --x64"
   },
-  "author": "",
+  "author": "YouTwitFace <contact@lungers.com>",
+  "homepage": "https://github.com/YouTwitFace/lungers-chat",
   "license": "MIT",
   "devDependencies": {
     "electron": "^4.0.1",
