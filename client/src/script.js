@@ -36,14 +36,13 @@ function addMessage(user, message, background = `light`, text = `black`) {
 function addUsers(users) {
     usersElement.innerHTML = ``;
 
-    Object.values(users)
-        .forEach(user => {
-            const div = document.createElement(`li`);
-            div.className = `list-group-item`;
-            div.id = user.id;
-            div.innerText = user.name;
-            usersElement.appendChild(div);
-        });
+    users.forEach(user => {
+        const div = document.createElement(`li`);
+        div.className = `list-group-item`;
+        div.id = user.id;
+        div.innerText = user.name;
+        usersElement.appendChild(div);
+    });
 }
 
 function connect() {

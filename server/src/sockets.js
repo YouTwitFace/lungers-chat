@@ -1,32 +1,32 @@
 const socketIO = require(`socket.io`);
 
-const users = {};
+const users = new Map();
 
 function init(server) {
     const io = socketIO(server);
 
     io.on(`connection`, socket => {
         socket.once(`set-name`, name => {
-            users[socket.id] = {
+            users.set(socket.id, {
                 id: socket.id,
                 name: name,
-            };
+            });
 
-            io.emit(`user-connected`, users);
+            io.emit(`user-connected`, [...users.values()]);
         });
 
         socket.on(`message`, message => {
-            if (users[socket.id]) {
+            if (users.get(socket.id)) {
                 io.emit(`message`, {
                     message: message,
-                    user: users[socket.id],
+                    user: users.get(socket.id),
                     date: new Date(),
                 });
             }
         });
 
         socket.on(`disconnect`, () => {
-            delete users[socket.id];
+            users.delete(socket.id);
             io.emit(`user-disconnected`, socket.id);
         });
     });
