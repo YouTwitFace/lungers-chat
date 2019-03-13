@@ -31,6 +31,18 @@ window.addEventListener(`keyup`, e => {
     }
 });
 
+messageElement.addEventListener(`keydown`, e => {
+    if (!e.ctrlKey && !e.shiftKey && e.keyCode === 13) {
+        e.preventDefault();
+    }
+});
+
+messageElement.addEventListener(`keyup`, e => {
+    if (!e.ctrlKey && !e.shiftKey && e.keyCode === 13) {
+        sendButton.click();
+    }
+});
+
 function addMessage(user, message, background = `light`, text = `black`) {
     const div = document.createElement(`div`);
     div.className = `message bg-${background} text-${text} rounded pl-3 py-2 mt-2`;
