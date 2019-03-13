@@ -8,3 +8,8 @@ body {
 .chat-area {
     display: none;
 }
+
+.messages {
+    max-height: 45vh;
+    overflow: auto;
+}

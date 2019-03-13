@@ -10,6 +10,10 @@ const usersElement = document.querySelector(`.users`);
 const messageElement = document.querySelector(`#message-content`);
 const sendButton = document.querySelector(`.send-message button`);
 
+if (localStorage.name) {
+    nameElement.value = localStorage.name;
+}
+
 continueButton.addEventListener(`click`, () => {
     if (!nameElement.value) {
         return nameElement.classList.add(`is-invalid`);
@@ -17,7 +21,14 @@ continueButton.addEventListener(`click`, () => {
 
     continueButton.parentElement.style.display = `none`;
     chatArea.style.display = `block`;
+    localStorage.name = nameElement.value;
     connect();
+});
+
+window.addEventListener(`keyup`, e => {
+    if (e.ctrlKey && e.keyCode === 46) {
+        localStorage.messages = `[]`;
+    }
 });
 
 function addMessage(user, message, background = `light`, text = `black`) {
@@ -31,6 +42,8 @@ function addMessage(user, message, background = `light`, text = `black`) {
 
     div.prepend(nameDiv);
     messagesElement.appendChild(div);
+
+    messagesElement.scrollTop = messagesElement.scrollHeight - messagesElement.clientHeight;
 }
 
 function addUsers(users) {
@@ -52,6 +65,15 @@ function connect() {
     socket.on(`connect`, () => {
         messagesElement.innerHTML = ``;
         addMessage(`Status`, `Connected`, `info`, `white`);
+
+        if (localStorage.messages) {
+            const messages = JSON.parse(localStorage.messages);
+
+            messages.forEach(({ user, message, date }) => {
+                const localeDate = new Date(date).toLocaleString();
+                addMessage(`${user.name} (${localeDate})`, message);
+            });
+        }
     });
 
     socket.on(`user-connected`, addUsers);
@@ -64,8 +86,13 @@ function connect() {
         }
     });
 
-    socket.on(`message`, ({ user, message }) => {
-        addMessage(user.name, message);
+    socket.on(`message`, ({ user, message, date }) => {
+        const localeDate = new Date(date).toLocaleString();
+        addMessage(`${user.name} (${localeDate})`, message);
+
+        const messages = JSON.parse(localStorage.messages || `[]`);
+        messages.push({ user, message, date });
+        localStorage.messages = JSON.stringify(messages);
     });
 
     sendButton.addEventListener(`click`, () => {
