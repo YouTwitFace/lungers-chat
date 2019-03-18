@@ -12,6 +12,10 @@ const usersElement = document.querySelector(`.users`);
 const messageElement = document.querySelector(`#message-content`);
 const sendButton = document.querySelector(`.send-message button`);
 
+if (window.Notification && Notification.permission === `default`) {
+    Notification.requestPermission();
+}
+
 if (localStorage.name) {
     nameElement.value = localStorage.name;
 }
@@ -74,6 +78,19 @@ function addUsers(users) {
     });
 }
 
+function notify(user, message) {
+    if (!window.Notification || document.hasFocus()) return;
+    else if (Notification.permission === `default`) {
+        Notification.requestPermission(() => notify(user, message));
+    } else if (Notification.permission !== `denied`) {
+        const notification = new Notification(`New Message`, {
+            body: `${user}: ${message}`,
+        });
+
+        notification.onclick = () => (window.focus(), notification.close());
+    }
+}
+
 function connect() {
     const socket = io.connect(SOCKET_API_URL);
     socket.emit(`set-name`, nameElement.value);
@@ -105,6 +122,10 @@ function connect() {
     socket.on(`message`, ({ user, message, date }) => {
         const localeDate = new Date(date).toLocaleString();
         addMessage(`${user.name} (${localeDate})`, message);
+
+        if (user.id !== socket.id) {
+            notify(user.name, message);
+        }
 
         const messages = JSON.parse(localStorage.messages || `[]`);
         messages.push({ user, message, date });
