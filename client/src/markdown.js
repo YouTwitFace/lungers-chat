@@ -22,8 +22,17 @@ const markdown = new Remarkable({
             // Ignore
         }
 
-        return ``; // use external default escaping
+        return ``;
     },
 });
+
+markdown.renderer.rules.link_open = (function () {
+    const original = markdown.renderer.rules.link_open;
+
+    return function () {
+        const link = original.apply(this, arguments);
+        return `${link.slice(0, link.length - 1)} target="_blank">`;
+    };
+})();
 
 export default markdown;
