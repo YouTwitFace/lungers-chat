@@ -18,6 +18,11 @@ body {
     word-wrap: break-word;
 }
 
+.message pre,
+.message p {
+    margin: 0;
+}
+
 .users {
     max-height: 50vh;
     overflow: auto;
