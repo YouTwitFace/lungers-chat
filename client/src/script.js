@@ -1,4 +1,6 @@
 import io from 'socket.io-client';
+import xss from 'xss';
+import markdown from './markdown';
 
 const SOCKET_API_URL = `http://localhost:5000`;
 
@@ -44,9 +46,11 @@ messageElement.addEventListener(`keyup`, e => {
 });
 
 function addMessage(user, message, background = `light`, text = `black`) {
+    const parsedMessage = markdown.render(xss(message)).replace(/^<p>([\s\S]+)<\/p>/, `$1`);
+
     const div = document.createElement(`div`);
     div.className = `message bg-${background} text-${text} rounded pl-3 py-2 mt-2`;
-    div.innerText = message;
+    div.innerHTML = parsedMessage;
 
     const nameDiv = document.createElement(`div`);
     nameDiv.className = `font-weight-bold`;
