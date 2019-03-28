@@ -1,0 +1,22 @@
+{
+  "name": "lungers-chat",
+  "version": "0.1.0",
+  "description": "A web-based chat app using web sockets.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YouTwitFace/lungers-chat.git"
+  },
+  "keywords": [
+    "lungers-chat",
+    "chat"
+  ],
+  "author": "YouTwitFace <contact@lungers.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/YouTwitFace/lungers-chat/issues"
+  },
+  "dependencies": {
+    "socket.io-client": "^2.2.0"
+  }
+}
