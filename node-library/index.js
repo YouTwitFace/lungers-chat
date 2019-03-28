@@ -28,6 +28,11 @@ class LungersChat extends EventEmitter {
         });
     }
 
+    disconnect() {
+        this.socket.disconnect();
+        this.socket = null;
+    }
+
     sendMessage(text) {
         this.socket.emit(`message`, text);
     }
