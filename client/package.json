@@ -11,10 +11,10 @@
   "author": "YoutTwitFace <contact@lungers.com>",
   "license": "MIT",
   "dependencies": {
-    "highlight.js": "^9.15.6",
-    "parcel-bundler": "^1.11.0",
-    "remarkable": "^1.7.1",
-    "socket.io-client": "^2.2.0",
-    "xss": "^1.0.3"
+    "highlight.js": "^9.18.1",
+    "parcel-bundler": "^1.12.4",
+    "remarkable": "^1.7.4",
+    "socket.io-client": "^2.3.0",
+    "xss": "^1.0.7"
   }
 }
