@@ -7,6 +7,9 @@ app.on(`ready`, () => {
         title: `Lungers Chat`,
         minWidth: 950,
         minHeight: 575,
+        webPreferences: {
+            nodeIntegration: true,
+        },
     });
 
     window.setMenu(null);

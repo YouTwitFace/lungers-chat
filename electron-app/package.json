@@ -14,8 +14,8 @@
   "homepage": "https://github.com/YouTwitFace/lungers-chat",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^4.0.1",
-    "electron-builder": "^20.44.4"
+    "electron": "^9.1.0",
+    "electron-builder": "^22.7.0"
   },
   "dependencies": {
     "socket.io-client": "^2.3.0"
